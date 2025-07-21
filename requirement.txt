@@ -1,8 +1,9 @@
 fastapi
 uvicorn
+aiohttp
 pdfplumber
+pandas
 sentence-transformers
 faiss-cpu
-aiohttp
 numpy
-requests
+python-multipart
