@@ -26,8 +26,8 @@ OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 base_url = os.environ.get('base_url')
  
 # Embedding model & FAISS
-embedder = SentenceTransformer('all-MiniLM-L6-v2')
-index = faiss.IndexFlatL2(384)
+embedder = SentenceTransformer('paraphrase-MiniLM-L3-v2')
+index = faiss.IndexFlatL2(256)
  
 # Caches
 @functools.lru_cache(maxsize=100)
@@ -71,7 +71,7 @@ def extract_text_file(file_bytes: bytes) -> Tuple[Optional[str], Optional[str]]:
     except Exception as e:
         return None, str(e)
  
-def chunk_text(text: str, max_words: int = 500) -> List[str]:
+def chunk_text(text: str, max_words: int = 300) -> List[str]:
     words = re.findall(r'\S+', text)
     chunks, current, count = [], [], 0
     for w in words:
