@@ -2,8 +2,7 @@ fastapi
 uvicorn
 aiohttp
 pdfplumber
-pandas
-sentence-transformers
-faiss-cpu
 numpy
+faiss-cpu
+sentence-transformers==2.2.2
 python-multipart
