@@ -23,7 +23,7 @@ async function summarizeWithGemini(chunk) {
         role: 'user',
         parts: [
           {
-            text: `Context:\n${chunk}\n\nCompress the following text while keeping all important details. Make it shorter and information-dense but do not miss any information, only shorten all the sentences by removing the unnecessary part of that sentence. Return the result in a paragraph form.`
+            text: `!!! IMPORTANT DO NOT MISS ANY INFO LIKE DATE NUMBER NAMES PLACES AND KEYWORDS .Context:\n${chunk}\n\nCompress the following text while keeping all important details. Make it shorter and information-dense but do not miss any information, only shorten all the sentences by removing the unnecessary part of that sentence. Return the result in a paragraph form.`
           }
         ]
       }
