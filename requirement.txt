@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-aiohttp
-pdfplumber
-numpy
-faiss-cpu
-sentence-transformers==2.2.2
-python-multipart
