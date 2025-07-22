@@ -202,6 +202,7 @@ app.post('/hackrx/run', async (req, res) => {
 4. Do NOT include any introductory phrases, explanations, or concluding remarks.
 5. If the answer is a definition, provide the exact definition as found in the text.
 6. If the answer is not explicitly found in the document context, state "Not found in document."
+7. answer length must lie between 10 to 20 words.
 
 Question: ${question}`
                             }
