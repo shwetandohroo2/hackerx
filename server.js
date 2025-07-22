@@ -285,12 +285,6 @@ Question: ${question}`
         });
 
         const answers = await Promise.all(answerPromises);
-
-        const endTime = process.hrtime.bigint();
-        const responseTimeMs = Number(endTime - startTime) / 1_000_000;
-
-        res.json({ answers, responseTimeMs: `${responseTimeMs.toFixed(2)} ms` });
-
     } catch (err) {
         console.error('Error processing request:', err.message);
         const endTime = process.hrtime.bigint();
