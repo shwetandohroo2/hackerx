@@ -1,17 +1,15 @@
 const express = require('express');
 const axios = require('axios');
 const pdfParse = require('pdf-parse');
-
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
 
-const GEMINI_API_KEY = 'AIzaSyAaK_g64tXlaXIhFzxj-eUT9RzprG7n3xM';
+const GEMINI_API_KEY = 'AIzaSyAaK_g64tXlaXIhFzxj-eUT9RzprG7n3xM'
 
 const GEMINI_API_URL_CONTENT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 const GEMINI_API_URL_EMBEDDING = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${GEMINI_API_KEY}`;
-
 function chunkText(text, maxTokens = 500, overlapTokens = 100) {
     const chunks = [];
     // Split by paragraphs first (one or more newlines with optional whitespace)
@@ -196,13 +194,13 @@ app.post('/hackrx/run', async (req, res) => {
                         parts: [
                             {
                                 text: `Context:\n${finalContext}\n\nAnswer the following question based ONLY on the provided document context. Your answer MUST be:
-1. Extremely concise and direct.
-2. Contain ONLY the requested information.
-3. Use digits for all numbers (e.g., "36" not "thirty-six").
-4. Do NOT include any introductory phrases, explanations, or concluding remarks.
-5. If the answer is a definition, provide the exact definition as found in the text.
-6. If the answer is not explicitly found in the document context, state "Not found in document."
-7. answer length must lie between 10 to 20 words.
+1.  Extremely concise and direct.
+2.  Contain ONLY the requested information.
+3.  Use digits for all numbers (e.g., "36" not "thirty-six").
+4.  Do NOT include any introductory phrases, explanations, or concluding remarks.
+5.  If the answer is a definition, provide the exact definition as found in the text.
+6.  If the answer is not explicitly found in the document context, state "Not found in document."
+7.  Do NOT add any information that is not directly present in the provided context.
 
 Question: ${question}`
                             }
@@ -237,6 +235,8 @@ Question: ${question}`
                     .replace(/It states that /i, '')
                     .replace(/Here is the answer: /i, '')
                     .replace(/The document states: /i, '')
+                    .replace(/Answer: /i, '') // Added this
+                    .replace(/The policy states: /i, '') // Added this
                     .trim();
 
                 // Attempt to convert number words to digits as a fallback
@@ -245,7 +245,8 @@ Question: ${question}`
                 return cleanedAnswer;
             } catch (geminiError) {
                 console.error(`Error asking Gemini for question "${question}":`, geminiError.response ? geminiError.response.data : geminiError.message);
-                return `Error retrieving answer for "${question}".`;
+                // Return "Not found in document." if there's an API error
+                return "Not found in document.";
             }
         });
 
