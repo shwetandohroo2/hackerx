@@ -100,9 +100,6 @@ app.post('/hackrx/run', async (req, res) => {
         if (questions.length === 0) {
             return res.json({ answers: [] });
         }
-        if (!GEMINI_API_KEY) {
-            return res.status(500).json({ error: 'API key for Gemini is not configured. Please set GEMINI_API_KEY in your .env file.' });
-        }
 
         console.log(`Processing PDF from: ${documents}`);
         const pdfResponse = await axios.get(documents, { responseType: 'arraybuffer', timeout: 90000 });
@@ -118,8 +115,8 @@ app.post('/hackrx/run', async (req, res) => {
             try {
                 const embedding = await getEmbedding(chunk);
                 documentChunks.push({ text: chunk, embedding: embedding });
-            } catch (error) {
-                console.error(`Failed to embed chunk ${index + 1}:`, error.message);
+            } catch {
+                console.log(`Failed to embed chunk ${index + 1}:`);
             }
         }));
         console.log(`Finished embedding ${documentChunks.length} chunks for this request.`);
@@ -186,9 +183,8 @@ Question: ${question}`
                 cleanedAnswer = convertWordsToDigits(cleanedAnswer);
 
                 return cleanedAnswer;
-            } catch (geminiError) {
-                console.error(`Error asking Gemini for question "${question}":`, geminiError.response ? geminiError.response.data : geminiError.message);
-                return "Not found in document.";
+            } catch {
+                return res.json({ answers: [] });
             }
         });
 
