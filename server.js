@@ -6,7 +6,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
-const GEMINI_API_KEY = 'AIzaSyAaK_g64tXlaXIhFzxj-eUT9RzprG7n3xM'
+const GEMINI_API_KEY = 'AIzaSyC3loxj3YwITkUl6gDK3QY53QYvHElLhrw'
 
 const GEMINI_API_URL_CONTENT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 const GEMINI_API_URL_EMBEDDING = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${GEMINI_API_KEY}`;
@@ -200,7 +200,7 @@ app.post('/hackrx/run', async (req, res) => {
 4. Do NOT include any introductory phrases, explanations, or concluding remarks.
 5. If the answer is a definition, provide the exact definition as found in the text.
 6. If the answer is not explicitly found in the document context, state "Not found in document."
-8. Answer must be of 10-15 words max.
+7. Give all of the answers right and also under 10-20 words max.
 
 Question: ${question}`
                             }
