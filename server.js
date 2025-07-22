@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const pdfParse = require('pdf-parse');
-require('dotenv').config(); // Load environment variables from a .env file
 
 const app = express();
 const PORT = 3000;
@@ -9,7 +8,7 @@ const PORT = 3000;
 app.use(express.json());
 
 // --- Configuration ---
-const GEMINI_API_KEY = AIzaSyAaK_g64tXlaXIhFzxj-eUT9RzprG7n3xM;
+const GEMINI_API_KEY = 'AIzaSyAaK_g64tXlaXIhFzxj-eUT9RzprG7n3xM';
 const GEMINI_API_URL_CONTENT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 const GEMINI_API_URL_EMBEDDING = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${GEMINI_API_KEY}`;
 
