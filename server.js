@@ -6,7 +6,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
-const GEMINI_API_KEY = 'AIzaSyC3loxj3YwITkUl6gDK3QY53QYvHElLhrw'
+const GEMINI_API_KEY = 'AIzaSyDWT-gLV6osNMZWtkIt4nxEsEzjdCwUj-A'
 
 const GEMINI_API_URL_CONTENT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 const GEMINI_API_URL_EMBEDDING = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${GEMINI_API_KEY}`;
@@ -250,7 +250,9 @@ Question: ${question}`
             }
         });
 
-        const answers = await Promise.all(answerPromises);
+        const answers = await Promise.all(answerPromises); // Wait for all questions to be answered
+        
+        res.json({ answers });
 
     } catch (err) {
         console.error('Error processing request:', err.message);
