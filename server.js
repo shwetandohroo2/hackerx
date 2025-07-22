@@ -37,7 +37,7 @@ async function summarizeWithGemini(chunk) {
   return response.data.candidates?.[0]?.content?.parts?.[0]?.text || '';
 }
 
-app.post('/ask', async (req, res) => {
+app.post('/hackrx/run', async (req, res) => {
   try {
     const { documents, questions } = req.body;
 
