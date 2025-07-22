@@ -6,7 +6,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
-const GEMINI_API_KEY = 'AIzaSyDWT-gLV6osNMZWtkIt4nxEsEzjdCwUj-A'
+const GEMINI_API_KEY = 'AIzaSyAGMeiEKbp2ELpbF3mmaJ6660qzwqBHnqM'
 
 const GEMINI_API_URL_CONTENT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 const GEMINI_API_URL_EMBEDDING = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${GEMINI_API_KEY}`;
