@@ -184,7 +184,8 @@ Question: ${question}`
 
                 return cleanedAnswer;
             } catch {
-                return res.json({ answers: [] });
+                console.log('Gemini request failed:');
+                return 'Not found in document.';
             }
         });
 
