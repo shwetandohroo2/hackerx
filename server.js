@@ -194,13 +194,13 @@ app.post('/hackrx/run', async (req, res) => {
                         parts: [
                             {
                                 text: `Context:\n${finalContext}\n\nAnswer the following question based ONLY on the provided document context. Your answer MUST be:
-1.  Extremely concise and direct.
-2.  Contain ONLY the requested information.
-3.  Use digits for all numbers (e.g., "36" not "thirty-six").
-4.  Do NOT include any introductory phrases, explanations, or concluding remarks.
-5.  If the answer is a definition, provide the exact definition as found in the text.
-6.  If the answer is not explicitly found in the document context, state "Not found in document."
-7.  Do NOT add any information that is not directly present in the provided context.
+1. Extremely concise and direct.
+2. Contain ONLY the requested information.
+3. Use digits for all numbers (e.g., "36" not "thirty-six").
+4. Do NOT include any introductory phrases, explanations, or concluding remarks.
+5. If the answer is a definition, provide the exact definition as found in the text.
+6. If the answer is not explicitly found in the document context, state "Not found in document."
+8. Answer must be of 10-15 words max.
 
 Question: ${question}`
                             }
