@@ -10,7 +10,7 @@ const GEMINI_API_KEY = 'AIzaSyAGMeiEKbp2ELpbF3mmaJ6660qzwqBHnqM'
 
 const GEMINI_API_URL_CONTENT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 const GEMINI_API_URL_EMBEDDING = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${GEMINI_API_KEY}`;
-function chunkText(text, maxTokens = 500, overlapTokens = 100) {
+function chunkText(text, maxTokens = 1000, overlapTokens = 200) {
     const chunks = [];
     const paragraphs = text.split(/\n\s*\n/);
 
@@ -107,7 +107,7 @@ app.post('/hackrx/run', async (req, res) => {
         const extractedText = pdfData.text;
         console.log('Extracted Text Length:', extractedText.length);
 
-        const chunks = chunkText(extractedText, 500, 100);
+        const chunks = chunkText(extractedText, 1000, 200);
         console.log(`Generated ${chunks.length} chunks.`);
 
         const documentChunks = []; // Local to this request
