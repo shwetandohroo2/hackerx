@@ -23,7 +23,7 @@ async function summarizeWithGemini(chunk) {
         role: 'user',
         parts: [
           {
-            text: `!!! IMPORTANT DO NOT MISS ANY INFO LIKE DATE NUMBER NAMES PLACES AND KEYWORDS . JUST COMPRESS THE SENTENCES USING ALTERNATIVE SHORT EXPRESSION BUT DO NOT REMOVE ANY CONTENT DETAILS STRICTLY.Context:\n${chunk}\n\nCompress the following text while keeping all important details. Make it shorter and information-dense .  shorten all the sentences by removing the unnecessary part of that sentence. Return the result in a paragraph form.`
+            text: `Carefully read the following "Context" document. Your task is to provide an *extremely detailed and comprehensive summary* of the context, ensuring **no factual information, specific numbers, dates, names, conditions, clauses, or critical details are omitted or altered in any way.** The summary should be concise where possible, but *never at the expense of completeness or accuracy*. Focus on extracting all actionable information, definitions, and requirements. Maintain the original meaning precisely. If a detail is present in the context, it MUST be present in your summary. Do not interpret or infer. Present the summary in paragraph form.\n\nContext:\n${chunk}`
           }
         ]
       }
